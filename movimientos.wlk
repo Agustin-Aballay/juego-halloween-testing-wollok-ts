@@ -18,20 +18,29 @@ object movimiento {
 
 object haciaArriba {
 	// TODO: no se puede subir más arriba del suelo, donde está la casa
-	method posicionSiguiente(posicion) = posicion.up(1)
+	method posicionSiguiente(posicion) = 
+	if (posicion.y() < config.alturaDelSuelo()) posicion.up(1)
 }
 
 object haciaAbajo {
 	// TODO: no se puede bajar más allá del y = 0
-	method posicionSiguiente(posicion) = posicion.down(1)
+
+	method posicionSiguiente(posicion) = 
+	if (posicion.y() > 0) posicion.down(1) 
+
 }
 
 object haciaLaDerecha {
-	// TODO: saliendo por el borde derecho se da la vuelta a la manzana
-	method posicionSiguiente(posicion) = posicion.right(1)
+	// LISTO: saliendo por el borde derecho se da la vuelta a la 
+
+	method posicionSiguiente(posicion) = 
+	if (posicion.x() >= config.anchoMaximo() - 1) posicion.createPosition(0, posicion.y())//game.at(0,posicion.y())
+	else posicion.right(1)
 }
 
 object haciaLaIzquierda {
-	// TODO: saliendo por el borde izquierdo se da la vuelta a la manzana
-	method posicionSiguiente(posicion) = posicion.left(1)
+	// READY: saliendo por el borde izquierdo se da la vuelta a la manzana
+	method posicionSiguiente(posicion) = 
+	if (posicion.x() <= 0 ) posicion.createPosition(config.anchoMaximo() - 1, posicion.y())
+	else posicion.left(1)
 }

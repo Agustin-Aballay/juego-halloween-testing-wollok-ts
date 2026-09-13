@@ -1,3 +1,4 @@
+import movimientos.*
 import wollok.game.*
 import disfraces.*
 
@@ -19,7 +20,9 @@ object juanita {
 
 	method position(){
 		// TODO: debería estar siempre una celda a la izquierda de tito
-		return game.at(1, 0)
+		
+		// return game.at(tito.position().x() - 1, tito.position().y())
+		return haciaLaIzquierda.posicionSiguiente(tito.position())
 	}
 
 	method image(){
